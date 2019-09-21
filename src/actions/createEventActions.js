@@ -1,4 +1,4 @@
-import {TRAER_TODO,CARGANDO,ERROR} from '../types/loginRegisterTypes';
+import {TRAER_TODO,CARGANDO,ERROR} from '../types/userLandingPageTypes';
 
 export const traerTodo =()=> async (dispatch)=>{
     dispatch({

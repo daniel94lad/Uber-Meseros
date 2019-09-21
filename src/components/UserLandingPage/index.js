@@ -1,10 +1,12 @@
-import React from 'react';
-import {Component} from 'react';
+import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import * as UserLandingPageActions from '../../actions/userLandingPageActions';
 import Content from './Content';
 import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
 
-class LandingPage extends Component {
+
+class UserLandingPage extends Component{
     ponerContenido = ()=>
     {
         if(this.props.cargando){
@@ -19,10 +21,13 @@ class LandingPage extends Component {
     render(){
         return (
             <div>
+                
                 {this.ponerContenido()}
             </div>
         )
     }
 }
-
-export default LandingPage;
+const mapStateToProps = (reducers)=>{
+    return reducers.userLandingPageReducer;
+}
+export default  connect(mapStateToProps,UserLandingPageActions)(UserLandingPage);

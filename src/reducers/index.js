@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import loginReducer from './loginReducer';
-import loginRegisterReducer from './loginRegisterReducer';
-// import pinterestReducer from './pinterestReducer';
+import userRegisterReducer from './userRegisterReducer';
+import userLandingPageReducer from './userLandingPageReducer';
 
 export default combineReducers({
     loginReducer,
-    loginRegisterReducer
-    // pinterestReducer
+    userRegisterReducer,
+    userLandingPageReducer
 
 })

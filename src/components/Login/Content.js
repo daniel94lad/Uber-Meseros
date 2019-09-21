@@ -3,10 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import Back from '../../images/Back.svg'
-import FB from '../../images/facebook.svg';
-import IN from '../../images/instagram.svg';
-import TW from '../../images/twitter.svg';
-import GH from '../../images/github.svg'; 
 
 import {Button,Container,Row,Col,Form,FormGroup,Input} from 'reactstrap';
 import * as loginActions from '../../actions/loginActions';
@@ -75,66 +71,11 @@ const Content =(props)=>{
                         </Form>
                     </Col>
                 </Row>
-                {/* Redes sociales */}
-                <Row>
-                    <Col sm='12' md={{size:8,offset:2}} className="Login_Col_Layout">
-                        <Button 
-                        href="https://www.facebook.com" 
-                        target="_blank"
-                        className="rounded-pill" 
-                        size="lg" 
-                        block
-                        style={{backgroundColor: '#3B5998',borderColor: '#3B5998'}}
-                        >
-                            <img src={FB} width="30px" alt="Facebook" align='left'/>
-                            Ingresa con Facebook
-                        </Button>
-                    </Col>
-                    <Col sm='12' md={{size:8,offset:2}} className="Login_Col_Layout" >
-                        <Button 
-                        href="https://www.instagram.com" 
-                        target="_blank"
-                        className="rounded-pill"  
-                        size="lg" 
-                        block
-                        style={{backgroundColor: '#F58529',borderColor: '#F58529'}}
-                        >
-                            <img src={IN} width="30px" alt="Instagram" align='left'/>
-                            Ingresa con Instagram
-                        </Button>
-                    </Col>
-                    <Col sm='12' md={{size:8,offset:2}} className="Login_Col_Layout" >
-                        <Button 
-                        href="https://www.twitter.com" 
-                        target="_blank"
-                        className="rounded-pill" 
-                        size="lg" 
-                        block
-                        style={{backgroundColor: '#00ACEE',borderColor: '#00ACEE'}}
-                        >
-                            <img src={TW} width="30px" alt="Twitter" align='left'/>
-                            Ingresa con Twitter
-                        </Button>
-                    </Col>
-                    <Col sm='12' md={{size:8,offset:2}} className="Login_Col_Layout" >
-                        <Button 
-                        href="https://www.github.com" 
-                        target="_blank"
-                        className="rounded-pill" 
-                        size="lg" 
-                        block
-                        style={{backgroundColor: '#292F33',borderColor: '#292F33'}}
-                        >
-                            <img src={GH} width="30px" alt="Github" align='left'/>
-                            Ingresa con Git-hub
-                        </Button>
-                    </Col>
-                </Row>
                 {/* Boton Register */}
                 <Row>
                     <Col sm='12' md={{size:6,offset:3}} align="center" style={{marginTop:'20px'}}>
                         <Link to ='/login/register'>
-                            <Button outline color="primary" size="lg">Registrate</Button>
+                            <Button outline color="primary" size="lg" style={{width:'30%'}}>Login</Button>
                         </Link>
                     </Col>
                 </Row>

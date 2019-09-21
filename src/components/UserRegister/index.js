@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import * as loginRegisterActions from '../../actions/loginRegisterActions';
+import * as UserRegisterActions from '../../actions/userRegisterActions';
 import Content from './Content';
 import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
 
-class LoginRegister extends Component{
+class UserRegister extends Component{
     ponerContenido = ()=>
     {
         if(this.props.cargando){
@@ -26,6 +26,6 @@ class LoginRegister extends Component{
     }
 }
 const mapStateToProps = (reducers)=>{
-    return reducers.loginRegisterReducer;
+    return reducers.userRegisterReducer;
 }
-export default  connect(mapStateToProps,loginRegisterActions)(LoginRegister);
+export default  connect(mapStateToProps,UserRegisterActions)(UserRegister);

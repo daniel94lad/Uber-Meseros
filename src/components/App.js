@@ -4,16 +4,20 @@ import '../css/App.css';
 
 import LandingPage from '../components/LandingPage';
 import Login from '../components/Login';
-import LoginRegister from '../components/LoginRegister';
-import Pinterest from '../components/Pinterest';
+import UserRegister from '../components/UserRegister';
+import UserLandingPage from '../components/UserLandingPage';
+import CreateEvent from '../components/Create-Event';
+import PersonalReview from '../components/PersonalReview';
 
 const App =()=>(
   <BrowserRouter>
     <div className="margen">
       <Route exact path="/" component={LandingPage}/>
       <Route exact path="/login" component={Login}/>
-      <Route exact path="/login/register" component={LoginRegister}/>
-      <Route exact path="/pinterest" component={Pinterest}/>
+      <Route exact path="/user/register" component={UserRegister}/>
+      <Route exact path="/user/userLandingPage" component={UserLandingPage}/>
+      <Route exact path="/user/userLandingPage/createEvent" component={CreateEvent}/>
+      <Route exact path="/user/userLandingPage/personalReview" component={PersonalReview}/>
     </div>
   </BrowserRouter>
 );
