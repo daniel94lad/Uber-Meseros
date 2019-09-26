@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import logo from '../../images/Logo-ubermeseros.png';
 import {Link} from 'react-router-dom';
 import userImage from '../../images/user.png';
+import StarRatingComponent from 'react-star-rating-component';
 import {
     Container,
     Row,
@@ -22,6 +23,7 @@ class Content extends Component{
     super(props);
     this.state = {
         modal: false,
+        rating:4
     };
 
     this.toggle = this.toggle.bind(this);
@@ -33,6 +35,7 @@ class Content extends Component{
     }));
     }
     render(){
+        // const{rating} = this.state
         return(
             <div>
                 <Container>
@@ -49,27 +52,54 @@ class Content extends Component{
                     <Row className="user-card">
                         <Col sm="12" md="4">
                             <Card className="align-items-center d-flex ">
-                                <CardImg top width="10%" src={userImage} className="lala" alt="Card image cap" />
+                                <CardImg top width="10%" src={userImage}  alt="Card image cap" />
                                 <CardBody className="text-center">
                                 <CardTitle>Jorge Martinez</CardTitle>
+                                <CardTitle>
+                                    <div style={{fontSize: 30}}>
+                                        <StarRatingComponent 
+                                        name="rate1" 
+                                        starCount={5}
+                                        value={5}
+                                        />
+                                    </div>
+                                </CardTitle>
                                 <CardText>Super servicio, llegaron a la hora estimada y sin pagar tanto.</CardText>
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col sm="12" md="4">
                             <Card className="align-items-center d-flex ">
-                                <CardImg top width="10%" src={userImage} className="lala" alt="Card image cap" />
+                                <CardImg top width="10%" src={userImage}  alt="Card image cap" />
                                 <CardBody className="text-center">
                                 <CardTitle>Eduardo Roman</CardTitle>
+                                <CardTitle>
+                                    <div style={{fontSize: 30}}>
+                                        <StarRatingComponent 
+                                        name="rate1" 
+                                        starCount={5}
+                                        value={5}
+                                        />
+                                    </div>
+                                </CardTitle>
                                 <CardText>Siempre paga servicios carisimos. Esta app si es para fiestas a tu eleccion.</CardText>
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col sm="12" md="4">
                             <Card className="align-items-center d-flex ">
-                                <CardImg top width="10%" src={userImage} className="lala" alt="Card image cap" />
+                                <CardImg top width="10%" src={userImage}  alt="Card image cap" />
                                 <CardBody className="text-center">
                                 <CardTitle>Ramiro Cruz</CardTitle>
+                                <CardTitle>
+                                    <div style={{fontSize: 30}}>
+                                        <StarRatingComponent 
+                                        name="rate1" 
+                                        starCount={5}
+                                        value={5}
+                                        />
+                                    </div>
+                                </CardTitle>
                                 <CardText>La atencion de buena calidad y el barman tenia muy buenas recomendaciones</CardText>
                                 </CardBody>
                             </Card>
@@ -84,22 +114,22 @@ class Content extends Component{
                         </Col>
                     </Row>
                     {/* Registro Prompt */}
-                    <Row>
-                        <Col md="12" className="Link-registro text-center">
-                            <Button color="danger" onClick={this.toggle}>No tengo cuenta.(Registro)</Button>
-                            <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={this.props.className}>
-                                <ModalHeader toggle={this.toggle} className="text-center">Tipo de Cuenta</ModalHeader>
-                                <ModalFooter className="justify-content-around">
-                                    <Link to="/user/register">
-                                        <Button color="primary" onClick={this.toggle}>Usuario</Button>
-                                    </Link>
-                                    <Link to ="/user/register">
-                                        <Button color="primary" onClick={this.toggle}>Mesero</Button>
-                                    </Link>
-                                </ModalFooter>
-                            </Modal>
-                        </Col>
-                    </Row>
+                        <Row>
+                            <Col md="12" className="Link-registro text-center">
+                                <Button color="danger" onClick={this.toggle}>No tengo cuenta.(Registro)</Button>
+                                <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={this.props.className}>
+                                    <ModalHeader toggle={this.toggle} className="text-center">Tipo de Cuenta</ModalHeader>
+                                    <ModalFooter className="justify-content-around">
+                                        <Link to="/user/register">
+                                            <Button color="primary" onClick={this.toggle}>Usuario</Button>
+                                        </Link>
+                                        <Link to ="/user/register">
+                                            <Button color="primary" onClick={this.toggle}>Mesero</Button>
+                                        </Link>
+                                    </ModalFooter>
+                                </Modal>
+                            </Col>
+                        </Row>
                 </Container>
             </div>
         )

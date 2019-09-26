@@ -1,9 +1,7 @@
 body{
   margin: 0
 }
-a:hover{
-  background-color: rgba(87,87,87,0.5) !important;
-}
+
 .margen{
     margin:10px;
 }
@@ -74,12 +72,50 @@ a:hover{
   width: 45%;
   border:2px solid;
   font-size: 23px;
-  border-radius: 50px;
   margin-bottom: 2%;
 }
 .Link-registro a{
   text-decoration: underline;
 }
+
+/* Navbar */
+.Logo-navbar{
+  width: 12%;
+  border-radius: 500px;
+}
+
+/* Landing Page  */
+.LandingUsuarios_Title{
+  border-top: 3px solid gray;
+  border-bottom: 3px solid gray;
+
+}
+.Mis-Eventos-Container{
+  height: 500px;
+}
+.LandingUsuarios_Subtitle{
+  border-bottom: 3px solid gray;
+}
+.LandingUsuarios-Button {
+  width: 50%;
+}
+.Perfil-Usuario-Nombre h1{
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+  margin-left: 2%;
+}
+.Perfil-Usuario-Apellido h1{
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+  margin-right: 2%;
+}
+
 
 
 

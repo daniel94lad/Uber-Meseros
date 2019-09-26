@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../images/Logo-meseros.png';
+import logo from '../../images/Logo-ubermeseros.png';
 import {Link} from 'react-router-dom';
 import {
   Collapse,
@@ -8,11 +8,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  Button,
+ } from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -32,18 +29,38 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/"><img src={logo} alt="logoImage"/></NavbarBrand>
+          <NavbarBrand className="Space-logo-navbar">
+            <img className="Logo-navbar" src={logo} alt="logoImage"/>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link to="/">
-                Perfil
+              <NavItem className="ml-3 mt-3 mt-md-0">
+                <Link to="/user/userLandingPage">
+                  <Button>
+                    Mis Eventos
+                  </Button>
                 </Link>
               </NavItem>
-              <NavItem>
+              <NavItem className="ml-3 mt-3 mt-md-0">
                 <Link to="/">
-                    Random
+                  <Button>
+                    Logout
+                  </Button>
+                </Link>
+              </NavItem>
+              <NavItem className="ml-3 mt-3 mt-md-0">
+                <Link to="/user/userLandingPage/ProfileUser">
+                  <Button>
+                    Mi-Perfil
+                  </Button>
+                </Link>
+              </NavItem>
+              <NavItem className="ml-3 mt-3 mt-md-0">
+                <Link to="/">
+                  <Button>
+                    Asistencia
+                  </Button>
                 </Link>
               </NavItem>
             </Nav>

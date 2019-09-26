@@ -8,6 +8,7 @@ import UserRegister from '../components/UserRegister';
 import UserLandingPage from '../components/UserLandingPage';
 import CreateEvent from '../components/Create-Event';
 import PersonalReview from '../components/PersonalReview';
+import ProfileUser from '../components/Profile-User';
 
 const App =()=>(
   <BrowserRouter>
@@ -18,6 +19,7 @@ const App =()=>(
       <Route exact path="/user/userLandingPage" component={UserLandingPage}/>
       <Route exact path="/user/userLandingPage/createEvent" component={CreateEvent}/>
       <Route exact path="/user/userLandingPage/personalReview" component={PersonalReview}/>
+      <Route exact path="/user/userLandingPage/ProfileUser" component={ProfileUser}/>
     </div>
   </BrowserRouter>
 );
