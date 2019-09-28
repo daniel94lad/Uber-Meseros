@@ -17,7 +17,8 @@ class Content extends Component{
         super(props);
         this.state = {
             Nombre:"Rodolfo",
-            Apellido:"Toks"
+            Apellido:"Toks",
+            Email:"Rodo@gmail.com"
         };
     }
     render(){
@@ -26,7 +27,7 @@ class Content extends Component{
             <React.Fragment>
                 <Navbar/>
             </React.Fragment>
-            <Container style={{width:"80%"}}>
+            <Container>
                 <Row>
                     <Col md="12" className="justify-content-end d-flex mt-4">
                         <Button color="danger" className="justify-content-end d-flex" >Editar</Button>
@@ -54,6 +55,11 @@ class Content extends Component{
                     </Col>
                     <Col md="6" className="Perfil-Usuario-Apellido justify-content-start d-flex mt-2">
                         <h1>{this.state.Apellido}</h1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md="12" className="Perfil-Usuario-Email justify-content-center d-flex text-center mt-4">
+                        <h1>{this.state.Email}</h1>
                     </Col>
                 </Row>
             </Container>

@@ -114,22 +114,13 @@ class Content extends Component{
                         </Col>
                     </Row>
                     {/* Registro Prompt */}
-                        <Row>
-                            <Col md="12" className="Link-registro text-center">
+                    <Row>
+                        <Col md="12" className="Link-registro text-center">
+                            <Link  to="/user/register">
                                 <Button color="danger" onClick={this.toggle}>No tengo cuenta.(Registro)</Button>
-                                <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={this.props.className}>
-                                    <ModalHeader toggle={this.toggle} className="text-center">Tipo de Cuenta</ModalHeader>
-                                    <ModalFooter className="justify-content-around">
-                                        <Link to="/user/register">
-                                            <Button color="primary" onClick={this.toggle}>Usuario</Button>
-                                        </Link>
-                                        <Link to ="/user/register">
-                                            <Button color="primary" onClick={this.toggle}>Mesero</Button>
-                                        </Link>
-                                    </ModalFooter>
-                                </Modal>
-                            </Col>
-                        </Row>
+                            </Link>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         )

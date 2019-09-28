@@ -114,28 +114,7 @@ const Content =()=>{
                                 </Col>
                             </Row>
                             <Row form>
-                                <Col md={5}>
-                                    <FormGroup>
-                                    <Label>Ciudad</Label>
-                                    <Input 
-                                    className="input-form"
-                                    type="text" 
-                                    name="city" 
-                                    style={{ fontSize:'20px',border:'2px solid gray'}} 
-                                    />
-                                    </FormGroup>
-                                </Col>
-                                <Col md={4}>
-                                    <FormGroup>
-                                    <Label>Estado</Label>
-                                    <Input 
-                                    type="text" 
-                                    name="state" 
-                                    style={{ fontSize:'20px',border:'2px solid gray'}} 
-                                    />
-                                    </FormGroup>
-                                </Col>
-                                <Col md={3}>
+                                <Col md={6}>
                                     <FormGroup>
                                     <Label for="exampleZip">Codigo postal</Label>
                                     <Input 
@@ -144,6 +123,13 @@ const Content =()=>{
                                     style={{ fontSize:'20px',border:'2px solid gray'}} 
                                     />
                                     </FormGroup>  
+                                </Col>
+                                <Col md={6} className="Checkbox-Registro d-flex justify-content-center">
+                                    <FormGroup check inline>
+                                        <Label check>
+                                            <Input type="checkbox"/>Soy Mesero
+                                        </Label>
+                                    </FormGroup>
                                 </Col>
                             </Row>
                         </Form>
