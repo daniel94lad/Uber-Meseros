@@ -42,12 +42,10 @@ class Content extends Component{
             <React.Fragment>
                 <Navbar/>
             </React.Fragment>
+            <Col md ="12" className="LandingUsuarios_Title text-center">
+                <h1>Mis Eventos</h1>
+            </Col>
             <Container>
-                <Row  className="LandingUsuarios_Title">
-                    <Col md ="12" className="text-center">
-                        <h1>Mis Eventos</h1>
-                    </Col>
-                </Row>
                 <Row className="Mis-Eventos-Container">
                     <Col md="12" className="text-center align-self-center">
                         <Button outline size="lg" className="LandingUsuarios-Button" color="success" onClick={this.toggle}>Crea tu Evento</Button>

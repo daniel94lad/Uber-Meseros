@@ -43,9 +43,9 @@ export default class Example extends React.Component {
                 </Link>
               </NavItem>
               <NavItem className="ml-3 mt-3 mt-md-0">
-                <Link to="/">
+                <Link to="/user/userLandingPage">
                   <Button>
-                    Logout
+                    Contrataciones
                   </Button>
                 </Link>
               </NavItem>
@@ -57,9 +57,16 @@ export default class Example extends React.Component {
                 </Link>
               </NavItem>
               <NavItem className="ml-3 mt-3 mt-md-0">
-                <Link to="/">
+                <Link to="/user/userLandingPage/Attendance">
                   <Button>
                     Asistencia
+                  </Button>
+                </Link>
+              </NavItem>
+              <NavItem className="ml-3 mt-3 mt-md-0">
+                <Link to="/">
+                  <Button color="danger">
+                    Logout
                   </Button>
                 </Link>
               </NavItem>

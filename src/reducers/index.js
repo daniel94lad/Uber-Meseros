@@ -5,6 +5,7 @@ import userLandingPageReducer from './userLandingPageReducer';
 import profileUserReducer from './profileUserReducer';
 import createEventReducer from './createEventReducer';
 import personalReviewReducer from './personalReviewReducer';
+import attendanceReducer from './attendanceReducer';
 
 export default combineReducers({
     loginReducer,
@@ -12,6 +13,7 @@ export default combineReducers({
     userLandingPageReducer,
     profileUserReducer,
     createEventReducer,
-    personalReviewReducer
+    personalReviewReducer,
+    attendanceReducer
 
 })

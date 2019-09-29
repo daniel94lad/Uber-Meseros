@@ -13,9 +13,6 @@ import {
     CardBody,
     CardTitle,
     Button,
-    Modal, 
-    ModalHeader, 
-    ModalFooter
 } from 'reactstrap';
 
 class Content extends Component{
@@ -25,15 +22,7 @@ class Content extends Component{
         modal: false,
         rating:4
     };
-
-    this.toggle = this.toggle.bind(this);
-    }
-
-    toggle() {
-    this.setState(prevState => ({
-        modal: !prevState.modal
-    }));
-    }
+}
     render(){
         // const{rating} = this.state
         return(
@@ -117,7 +106,7 @@ class Content extends Component{
                     <Row>
                         <Col md="12" className="Link-registro text-center">
                             <Link  to="/user/register">
-                                <Button color="danger" onClick={this.toggle}>No tengo cuenta.(Registro)</Button>
+                                <Button color="danger">No tengo cuenta.(Registro)</Button>
                             </Link>
                         </Col>
                     </Row>
