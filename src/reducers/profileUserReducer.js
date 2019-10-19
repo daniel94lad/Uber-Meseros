@@ -1,6 +1,7 @@
 import {TRAER_TODO,CARGANDO,ERROR} from '../types/profileUserTypes';
 
 const INITIAL_STATE={
+    users:[],
     cargando:false,
     error:''
 }
@@ -10,7 +11,7 @@ export default(state = INITIAL_STATE,action)=>{
             return{
                 ...state,
                 cargando:false,
-                error:''
+                users:action.payload
             };
         case CARGANDO:
             return{

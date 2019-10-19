@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{Component} from 'react';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -7,7 +8,47 @@ import Plus from '../../images/Plus.svg';
 
 import {Button,Container,Row,Col,Form,FormGroup,Label,Input,CustomInput} from 'reactstrap';
 
-const Content =()=>{
+class Content extends Component {
+    constructor(){
+        super();
+        this.state = {
+            username:'',
+            first_name:'',
+            last_name:'',
+            email:'',
+            phoneNumber:'',
+            password:'',
+            postalCode:'',
+            streetAddress:'',
+            active:false
+        };
+    }
+    
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+      }
+     
+    handleSubmit = e => {
+    e.preventDefault();
+    
+    const {username,first_name,last_name,email,phoneNumber,password,streetAddress,postalCode,active} = this.state;
+
+    axios.post('http://localhost:8000/profiles/',{username,first_name,last_name,email,phoneNumber,password,streetAddress,postalCode,active})
+        .then(result=>{
+            console.log(result)
+        })
+        .catch(error =>{
+            console.log(error.result)
+        })
+    }
+    componentDidMount(){
+        axios.get('http://localhost:8000/profiles/')
+        .then(res=>{
+            console.log(res)
+        })
+        
+    }
+    render (){
     const nuestrocolor = '#d3d3d3';
     return (
         <div>
@@ -32,7 +73,7 @@ const Content =()=>{
                 {/* Formulario + Boton */}
                 <Row>
                     <Col sm='12' md={{size:8,offset:2}} className="Login_Col_Layout text-center">
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label>Imagen-Perfil</Label>
                                 <CustomInput 
@@ -48,7 +89,8 @@ const Content =()=>{
                                 className="input-form"
                                 type="username" 
                                 name="username" 
-                                placeholder="User123"                                
+                                placeholder="User123"    
+                                onChange={this.handleChange}                            
                                 style={{ fontSize:'20px',border:'2px solid gray'}}
                                 />
                             </FormGroup>
@@ -59,8 +101,9 @@ const Content =()=>{
                                     <Input 
                                     className="input-form"
                                     type="text" 
-                                    name="Name" 
+                                    name="first_name" 
                                     placeholder="Pablo"
+                                    onChange={this.handleChange} 
                                     style={{ fontSize:'20px',border:'2px solid gray'}}
                                      />
                                     </FormGroup>
@@ -71,8 +114,9 @@ const Content =()=>{
                                     <Input 
                                     className="input-form"
                                     type="text" 
-                                    name="Lastname" 
+                                    name="last_name" 
                                     placeholder="Ruiz"
+                                    onChange={this.handleChange} 
                                     style={{ fontSize:'20px',border:'2px solid gray'}} 
                                     />
                                     </FormGroup>
@@ -86,6 +130,18 @@ const Content =()=>{
                                 name="email" 
                                 id="Email" 
                                 placeholder="123@gmail.com" 
+                                onChange={this.handleChange}
+                                style={{ fontSize:'20px',border:'2px solid gray'}}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Telefono</Label>
+                                <Input 
+                                className="input-form"
+                                type="number" 
+                                name="phoneNumber" 
+                                placeholder="33********"
+                                onChange={this.handleChange}
                                 style={{ fontSize:'20px',border:'2px solid gray'}}
                                 />
                             </FormGroup>
@@ -96,7 +152,8 @@ const Content =()=>{
                                     <Input 
                                     className="input-form"
                                     type="password" 
-                                    name="password" 
+                                    name="password"
+                                    onChange={this.handleChange}  
                                     style={{ fontSize:'20px',border:'2px solid gray'}}
                                      />
                                     </FormGroup>
@@ -113,13 +170,25 @@ const Content =()=>{
                                     </FormGroup>
                                 </Col>
                             </Row>
+                            <FormGroup>
+                                <Label>Calle</Label>
+                                <Input 
+                                className="input-form"
+                                type="text" 
+                                name="streetAddress" 
+                                placeholder="Lerma #1223" 
+                                onChange={this.handleChange}
+                                style={{ fontSize:'20px',border:'2px solid gray'}}
+                                />
+                            </FormGroup>
                             <Row form>
                                 <Col md={6}>
                                     <FormGroup>
                                     <Label for="exampleZip">Codigo postal</Label>
                                     <Input 
                                     type="number" 
-                                    name="Code" 
+                                    name="postalCode" 
+                                    onChange={this.handleChange} 
                                     style={{ fontSize:'20px',border:'2px solid gray'}} 
                                     />
                                     </FormGroup>  
@@ -127,31 +196,36 @@ const Content =()=>{
                                 <Col md={6} className="Checkbox-Registro d-flex justify-content-center">
                                     <FormGroup check inline>
                                         <Label check>
-                                            <Input type="checkbox"/>Soy Mesero
+                                            <Input 
+                                            type="checkbox" 
+                                            name="active" 
+                                            onChange={this.handleChange} />Soy Mesero
                                         </Label>
                                     </FormGroup>
+                                </Col>
+                            </Row>
+                            {/* Terminos y Condiciones */}
+                            <Row>
+                                <Col sm='12' md={{size:8,offset:4}} className="Login_Col_Layout" align="center">
+                                    <Label check className="Check_Container">
+                                        <Input type="checkbox" style={{transform:'scale(2)',marginLeft:'30px'}}/>
+                                        <div className="Check_Terminos">He leido y acepto <br/> <Link to="/">Terminos y Condiciones</Link></div>
+                                    </Label>
+                                </Col>
+                                <Col sm='12' md={{size:6,offset:3}} align="center" style={{marginTop:'20px', marginBottom:'30px'}}>
+                                    {/* <Link to ='/user/userLandingPage'> */}
+                                    <Button type="submit" outline color="success" size="lg">Crear nueva cuenta (Usuario)</Button>
+                                    {/* </Link> */}
                                 </Col>
                             </Row>
                         </Form>
                     </Col>
                 </Row>
-                {/* Terminos y Condiciones */}
-                <Row>
-                    <Col sm='12' md={{size:8,offset:4}} className="Login_Col_Layout" align="center">
-                        <Label check className="Check_Container">
-                            <Input type="checkbox" style={{transform:'scale(2)',marginLeft:'30px'}}/>
-                            <div className="Check_Terminos">He leido y acepto <br/> <Link to="/">Terminos y Condiciones</Link></div>
-                        </Label>
-                    </Col>
-                    <Col sm='12' md={{size:6,offset:3}} align="center" style={{marginTop:'20px', marginBottom:'30px'}}>
-                        <Link to ='/user/userLandingPage'>
-                            <Button outline color="success" size="lg">Crear nueva cuenta (Usuario)</Button>
-                        </Link>
-                    </Col>
-                </Row>
+                
             </Container>
         </div>
     )
+}
 }
 const mapStateToProps=(reducers)=>{
     return reducers.userRegisterReducer
