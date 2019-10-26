@@ -18,16 +18,15 @@ class personalReview extends Component{
     _onSubmit = async (e)=>{
         
         e.preventDefault()
-        const {username,password} = this.state
         try{
             
-            let request = await axios.post('http://localhost:8000/api/login/',{
-                username,
-                password
+            let request = await axios.get(`http://localhost:8000/login/?username=${this.state.username}&password=${this.state.password}`,{
+                
             })
-
+            
+        console.log(request)
         const {data} = request
-        localStorage.setItem('token',data.token)
+        localStorage.setItem('key',data.key)
         window.location.replace('http://localhost:3000')
         
 

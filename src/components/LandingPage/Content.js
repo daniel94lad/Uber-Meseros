@@ -23,8 +23,8 @@ class Content extends Component{
         rating:4
     };
 }
+
     render(){
-        // const{rating} = this.state
         return(
             <div>
                 <Container>

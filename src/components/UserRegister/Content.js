@@ -158,7 +158,7 @@ class Content extends Component {
             <Container>
                 {/* Boton Regreso */}
                 <Row>
-                    <Link to ='/login'>
+                    <Link to ='/'>
                         <img src={Back} alt="Imagen regresar"/>
                     </Link>
                 </Row>

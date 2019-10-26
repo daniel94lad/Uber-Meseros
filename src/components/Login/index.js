@@ -7,24 +7,6 @@ import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
 
 class Login extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            users:[],
-            cargando:false,
-            error:' '
-        }
-    }
-    // componentWillMount(){
-    //     console.log(this.props)
-    
-    // }
-    componentDidMount(){
-        if(!Object.keys(this.props.users).length){
-            this.props.buscar()
-        }
-    }
-    
     
     ponerContenido = ()=>
     {
@@ -40,7 +22,6 @@ class Login extends Component{
     }
     
     render(){
-        console.log(this.state)
         return(
             <div>
                 {this.ponerContenido()}

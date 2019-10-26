@@ -16,7 +16,6 @@ const store = createStore(
     {},// estado inicial
     applyMiddleware(reduxThunk)
 )
-
 ReactDOM.render(
     <Provider store={store}>
         <App />

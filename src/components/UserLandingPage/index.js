@@ -4,7 +4,7 @@ import * as UserLandingPageActions from '../../actions/userLandingPageActions';
 import Content from './Content';
 import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
-
+import {Redirect} from 'react-router-dom';
 
 class UserLandingPage extends Component{
     ponerContenido = ()=>
@@ -16,9 +16,16 @@ class UserLandingPage extends Component{
         {
             return <Fatal mensaje ={this.props.error}/>
         }
-        return <Content/>
+        if(localStorage.getItem('key')){
+            return <Content/>
+        }
+        
     }
     render(){
+        if(!localStorage.getItem('key')){
+            alert('Falta hacer login')
+            return <Redirect to='/login'/>
+        }
         return (
             <div>
                 

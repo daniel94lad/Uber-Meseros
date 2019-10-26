@@ -25,6 +25,9 @@ export default class Example extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  _Exit(){
+    localStorage.removeItem('key')
+  }
   render() {
     return (
       <div>
@@ -65,7 +68,7 @@ export default class Example extends React.Component {
               </NavItem>
               <NavItem className="ml-3 mt-3 mt-md-0">
                 <Link to="/">
-                  <Button color="danger">
+                  <Button color="danger"onClick={this._Exit}>
                     Logout
                   </Button>
                 </Link>
