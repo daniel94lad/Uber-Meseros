@@ -1,26 +1,38 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import Navbar from '../General/UserNavbar';
-import {Link} from 'react-router-dom';
 import userImage from '../../images/user.png';
 import StarRatingComponent from 'react-star-rating-component';
+import axios from 'axios';
 import {Container,
     Row,
     Col,
     Button,
     Modal,
     ModalHeader,
+    ModalBody,
     ModalFooter,
     Card,
     CardImg,
     CardBody,
     CardTitle,
-    CardText
+    CardText,
+    Form, 
+    FormGroup, 
+    Label, 
+    Input, 
 } from 'reactstrap';
 
-
+import PersonalComp from '../PersonalReview';
 
 class Content extends Component{
+    componentDidMount(){
+        axios.get('http://localhost:8000/profiles/')
+        .then(res=>{
+            console.log(res)
+        })
+        
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -35,6 +47,7 @@ class Content extends Component{
           modal: !prevState.modal
         }));
       }
+    
     render(){
         // const{rating} = this.state
     return(
@@ -49,15 +62,64 @@ class Content extends Component{
                 <Row className="Mis-Eventos-Container">
                     <Col md="12" className="text-center align-self-center">
                         <Button outline size="lg" className="LandingUsuarios-Button" color="success" onClick={this.toggle}>Crea tu Evento</Button>
+                        {/* Crea tu Evento - Prompt */}
                         <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true} className={this.props.className}>
-                            <ModalHeader toggle={this.toggle} className="text-center">Tipo de Cuenta</ModalHeader>
+                            <ModalHeader toggle={this.toggle} className="text-center">Crea tu evento</ModalHeader>
+                            <ModalBody>
+                            <Form className="text-center w-100" >
+                                    <FormGroup>
+                                        <Label>Nombre Evento</Label>
+                                        <Input className="text-center" bsSize="lg" type="text" placeholder="XV´s Sofia" />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label>Fecha</Label>
+                                        <Input bsSize="lg"  type="date" name="date" placeholder="date placeholder"/>
+                                    </FormGroup>
+                                    <Row form className="justify-content-center">
+                                        <Col md="4">
+                                            <FormGroup>
+                                                <Label>Hora de llegada</Label>
+                                                <Input width="100%" type="time" placeholder="time placeholder"/>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col md="2">
+                                            <Label>a</Label>
+                                        </Col>
+                                        <Col md="4">
+                                            <FormGroup>
+                                                <Label>Hora de salida</Label>
+                                                <Input width="100%" type="time" placeholder="time placeholder"/>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <FormGroup>
+                                        <Label>Telefono</Label>
+                                        <Input className="text-center" type="number" name="number" placeholder="33*******"/>
+                                    </FormGroup>
+                                    <Row form>
+                                        <Col md="4">
+                                            <FormGroup>
+                                                <Label>Ciudad</Label>
+                                                <Input type="text" name="city"/>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col md="4">
+                                            <FormGroup>
+                                                <Label>Calle</Label>
+                                                <Input type="text" name="address"/>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col md="4">
+                                            <FormGroup>
+                                                <Label>Codigo Postal</Label>
+                                                <Input type="text" name="zip"/>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            </ModalBody>
                             <ModalFooter className="justify-content-around">
-                                <Link to="/user/register">
-                                    <Button color="primary" onClick={this.toggle}>Usuario</Button>
-                                </Link>
-                                <Link to ="/user/register">
-                                    <Button color="primary" onClick={this.toggle}>Mesero</Button>
-                                </Link>
+                                <PersonalComp/>
                             </ModalFooter>
                         </Modal>
                     </Col>

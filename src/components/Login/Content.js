@@ -28,6 +28,7 @@ class Content extends Component{
             
         console.log(request)
         const {data} = request
+        localStorage.setItem('username',this.state.username)
         localStorage.setItem('key',data.key)
         window.location.replace('http://localhost:3000/user/userLandingPage')
         

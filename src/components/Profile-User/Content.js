@@ -17,22 +17,43 @@ import
     CardTitle
     }
     from 'reactstrap';
-class Content extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            Nombre:"Rodolfo",
-            Apellido:"Toks",
-            Email:"Rodo@gmail.com",
-            Username:"rodo123xh",
-            Phone:`+52 33-31-36-54`,
-            Ciudad:"Guadalajara",
-            CP:45080,
-            SoyMesero:"Soy Mesero"
+import axios from 'axios';
 
-        };
+class Content extends Component{
+    getUsers(){
+        axios.get(`http://localhost:8000/profiles/${localStorage.getItem('username')}`)
+        .then(response=>
+            response.data.map(data=>({
+                avatar:`http://localhost:8000${data.avatar}`,
+                street:`${data.streetAddress}`,
+                CP:`${data.postalCode}`,
+                phone_Number:`${data.phoneNumber}`,
+                username:`${data.user.username}`,
+                nombre:`${data.user.first_name}`,
+                apellido:`${data.user.last_name}`,
+                email:`${data.user.email}`, 
+
+            }))
+        )
+        .then(users=>{
+            this.setState({
+                users
+            })
+        })
+    }
+    componentDidMount(){
+        
+        this.getUsers();
+    }
+    constructor(props){
+        super(props)
+        this.state={
+            users:[],
+        }
     }
     render(){
+        console.log(this.state)
+        const{users} = this.state
     return(
         <div>
             <React.Fragment>
@@ -44,58 +65,63 @@ class Content extends Component{
                         <Button color="danger" className="justify-content-end d-flex" >Editar</Button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md="12" className="justify-content-center d-flex mt-4">
-                        <img width="15%" src={userImage} alt="Imagen_Perfil_Usuario"/>
-                    </Col>
+                <Row className="justify-content-center">
+                    {users.map(user=>{
+                        const{street,active,CP,nombre,apellido,username,avatar,phone_Number,email}=user;
+                        return(
+                            <Col key={username} md="6" className="text-center" width="100%">
+                                <Row>
+                                    <Col md="12" className="justify-content-center d-flex mt-4">
+                                        <img className="User-Persona" style={{borderRadius:"50%"}} width="15%" src={avatar} alt="Imagen_Perfil_Usuario"/>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12" className="justify-content-center d-flex mt-4">
+                                        <div style={{fontSize: 50}}>
+                                            <StarRatingComponent 
+                                            name="rate1" 
+                                            starCount={5}
+                                            value={4}
+                                            />
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="6" className="Perfil-Usuario-Nombre justify-content-end d-flex mt-2">
+                                        <h1>{nombre}</h1>
+                                    </Col>
+                                    <Col md="6" className="Perfil-Usuario-Apellido justify-content-start d-flex mt-2">
+                                        <h1>{apellido}</h1>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12" className="Perfil-Usuario-Center justify-content-center d-flex text-center mt-4">
+                                        <h1>{email}</h1>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12" className="Perfil-Usuario-Center text-center">
+                                        <h1>{username}</h1>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12" className="Perfil-Usuario-Center text-center">
+                                        <h1>{phone_Number}</h1>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                <Col md="8" className="Perfil-Usuario-Center text-center">
+                                        <h1>{street}</h1>
+                                    </Col>
+                                    <Col md="4" className="Perfil-Usuario-Center text-center">
+                                        <h1>{CP}</h1>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        )
+                    })}
                 </Row>
-                <Row>
-                    <Col md="12" className="justify-content-center d-flex mt-4">
-                        <div style={{fontSize: 50}}>
-                            <StarRatingComponent 
-                            name="rate1" 
-                            starCount={5}
-                            value={4}
-                            />
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="6" className="Perfil-Usuario-Nombre justify-content-end d-flex mt-2">
-                        <h1>{this.state.Nombre}</h1>
-                    </Col>
-                    <Col md="6" className="Perfil-Usuario-Apellido justify-content-start d-flex mt-2">
-                        <h1>{this.state.Apellido}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="12" className="Perfil-Usuario-Center justify-content-center d-flex text-center mt-4">
-                        <h1>{this.state.Email}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="12" className="Perfil-Usuario-Center text-center">
-                        <h1>{this.state.Username}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="12" className="Perfil-Usuario-Center text-center">
-                        <h1>{this.state.Phone}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                <Col md="8" className="Perfil-Usuario-Center text-center">
-                        <h1>{this.state.Ciudad}</h1>
-                    </Col>
-                    <Col md="4" className="Perfil-Usuario-Center text-center">
-                        <h1>{this.state.CP}</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="12"  className="Perfil-Usuario-Center text-center mb-4">
-                        <h1 style={{background:"green",color:"white"}}>{this.state.SoyMesero}</h1>
-                    </Col>
-                </Row>
+                
                 <Row  className="Perfil_Subtitle mt-4">
                     <Col md ="12" className="text-center">
                         <h3>Clientes Anteriores</h3>

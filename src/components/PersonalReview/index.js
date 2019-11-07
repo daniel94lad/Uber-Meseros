@@ -5,49 +5,39 @@ import Content from './Content';
 import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
 import axios from 'axios';
-
-
+import {Container,Row,Col,Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button} from 'reactstrap';
 class personalReview extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            username:"",
-            password:"",
-        }
-    }
-    _onSubmit = async (e)=>{
-        
-        e.preventDefault()
-        try{
-            
-            let request = await axios.get(`http://localhost:8000/login/?username=${this.state.username}&password=${this.state.password}`,{
-                
-            })
-            
-        console.log(request)
-        const {data} = request
-        localStorage.setItem('key',data.key)
-        window.location.replace('http://localhost:3000')
-        
 
-        }catch(error){
-            console.log(error)
-            console.log(this.state)
-            alert("Tu usuario o contrasena son incorrectos, por favor revisalos")
-        }
-    }
-    handleInputChange=(event)=>{
-        this.setState({
-            [event.target.name]: event.target.value
-          })
-          
-          
+    getUsers(){
+        axios.get('http://localhost:8000/profiles/meseros/')
+        .then(response=>
+            response.data.map(data=>({
+                avatar:`http://localhost:8000${data.avatar}`,
+                phone_Number:`${data.phoneNumber}`,
+                username:`${data.user.username}`,
+                name:` ${data.user.first_name} ${data.user.last_name}`,
+                email:`${data.user.email}`, 
+
+            }))
+        )
+        .then(users=>{
+            this.setState({
+                users
+            })
+        })
     }
     componentDidMount(){
-        if(!Object.keys(this.props.users).length){
-            this.props.traerTodo()
+        
+        this.getUsers();
+    }
+    constructor(props){
+        super(props)
+        this.state={
+            users:[]
         }
     }
+  
     ponerContenido = ()=>
     {
         if(this.props.cargando){
@@ -60,40 +50,31 @@ class personalReview extends Component{
         return <Content/>
     }
     render(){
+        console.log(this.state)
+        const{users} = this.state
         return (
             <div>
-            <div id="login__content">
-                        <img src="https://i2.wp.com/thehappening.com/wp-content/uploads/2017/06/portada-55.jpg?fit=1024%2C694&ssl=1" alt="Login" />
-                        
-                        <div className="login__center">
-                            <h2>Inicio de Sesión</h2>
-                            <p><strong>¡Bienvenido!</strong> Es momentos de unas carnitas <span role="img" aria-label="sheep"> &#128536;</span></p>
-
-                            <form  onSubmit={this._onSubmit}>
-                                <label><strong> Usuario:</strong></label>
-
-                            <input type="text"
-                            placeholder="Nombre de Usuario"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleInputChange}
-                            required
-                        />
-                        <label><strong>Contraseña:</strong></label>
-                    <input type="password" 
-                    placeholder="Contraseña"
-                    value={this.state.password}
-                    name="password"
-                    onChange={this.handleInputChange}
-                    required
-                    />
-                    
-                    
-                            <input id="btn"  type="submit" value="Enviar"/>
-                            </form>
-                    </div>
-        </div>
-    </div>
+                <Container>
+                    <Row>
+                        {users.map(user=>{
+                            const{name,username,avatar,phone_Number,email}=user;
+                            return(
+                                <Col key={username} md="6" className="text-center" width="100%">
+                                    <Card className="align-items-center mb-3 mt-4">
+                                        <CardImg className="User-Persona" style={{marginTop:'2%',borderRadius:"50%",width:"50%"}}  width="100%" src={avatar} alt="Profile-IMG"/>
+                                        <CardBody>
+                                            <CardTitle style={{fontSize:"25px",color:"rgb(166, 101, 255)"}}>{name}</CardTitle>
+                                            <CardSubtitle>{email}</CardSubtitle>
+                                            <CardText>{phone_Number}</CardText>
+                                            <Button color="info">Contratar</Button>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            )
+                        })}
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }

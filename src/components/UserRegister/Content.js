@@ -11,7 +11,7 @@ import {Button,Container,Row,Col,Form,FormGroup,Label,Input,FormFeedback} from '
 
 class Content extends Component {
     componentDidMount(){
-        axios.get('http://localhost:8000/profiles/')
+        axios.get('http://localhost:8000/profiles/meseros/')
         .then(res=>{
             console.log(res)
         })
@@ -28,6 +28,7 @@ class Content extends Component {
             streetAddress:'',
             postalCode:'',
             redirect:false,
+            checarbox:true,
             validate:{emailState:'',
                     usernameState:'',
                     first_nameState:'', 
@@ -49,7 +50,7 @@ class Content extends Component {
 
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const { validate } = this.state
-            if (emailRex.test(e.target.value)) {
+            if (emailRex.test(this.state.user.email)) {
                 validate.emailState = 'has-success'
             } else {
                 validate.emailState = 'has-danger'
@@ -76,6 +77,11 @@ class Content extends Component {
             }
             this.setState({ validate })
         
+    }
+    checar=(e)=>{
+        this.setState(prevState=>({
+            checarbox:!prevState.checarbox
+        }))
     }
     changeBoolHandler=(e)=>{
         this.setState(prevState=>({
@@ -330,12 +336,12 @@ class Content extends Component {
                             <Row>
                                 <Col sm='12' md={{size:8,offset:4}} className="Login_Col_Layout" align="center">
                                     <Label check className="Check_Container">
-                                        <Input type="checkbox"  style={{transform:'scale(2)',marginLeft:'30px'}}/>
+                                        <Input type="checkbox" onClick={this.checar}  style={{transform:'scale(2)',marginLeft:'30px'}}/>
                                         <div className="Check_Terminos">He leido y acepto <br/> <Link to="/">Terminos y Condiciones</Link></div>
                                     </Label>
                                 </Col>
                                 <Col sm='12' md={{size:6,offset:3}} align="center" style={{marginTop:'20px', marginBottom:'30px'}}>
-                                    <Button type="submit" outline color="success" size="lg">Crear nueva cuenta (Usuario)</Button>
+                                    <Button type="submit" outline color="success" size="lg" disabled={this.state.checarbox}>Crear nueva cuenta (Usuario)</Button>
                                 </Col>
                             </Row>
                         </Form>

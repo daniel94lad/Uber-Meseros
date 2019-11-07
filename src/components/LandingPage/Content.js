@@ -34,11 +34,12 @@ class Content extends Component{
                         <img className="Image-Landing-Logo"src={logo} alt="Imagen-logo" />
                         </Col>
                         <Col md="12 text-center">
-                            <h1 className="Title-Logo">UBERMESEROS</h1>
+                            <h1 className="Title-Logo">PYParty</h1>
+                            <h4 style={{fontStyle:"italic"}}>"Plan your Party"</h4>
                         </Col>
                     </Row>
                     {/* Usuarios Comentarios */}
-                    <Row className="user-card">
+                    <Row className="user-card" style={{marginTop:"0"}}>
                         <Col sm="12" md="4">
                             <Card className="align-items-center d-flex ">
                                 <CardImg top width="10%" src={userImage}  alt="Card image cap" />

@@ -27,6 +27,7 @@ export default class Example extends React.Component {
   }
   _Exit(){
     localStorage.removeItem('key')
+    localStorage.removeItem('username')
   }
   render() {
     return (
@@ -46,7 +47,7 @@ export default class Example extends React.Component {
                 </Link>
               </NavItem>
               <NavItem className="ml-3 mt-3 mt-md-0">
-                <Link to="/user/userLandingPage">
+                <Link to="/user/userLandingPage/createEvent">
                   <Button>
                     Contrataciones
                   </Button>
